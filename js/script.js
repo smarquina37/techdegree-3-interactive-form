@@ -1,4 +1,4 @@
-const name = document.getElementById('name');
+const nameElement = document.getElementById('name');
 const jobRole = document.getElementById('title');
 const otherJobRole = document.getElementById('other-job-role');
 const design = document.getElementById('design');
@@ -17,7 +17,7 @@ const cvv = document.getElementById('cvv');
 const form = document.querySelector('form');
 let totalCost = 0;
 
-name.focus();
+nameElement.focus();
 // event listener to display 'Other job role' input text field if user selects 'Other' from 'Job role' dropdown menu. 
 // User can type in job role when this is displayed.
 otherJobRole.style.display = 'none';
@@ -82,12 +82,61 @@ payment.addEventListener('change', (e) => {
   }
 })
 
+function nameValidator() {
+  const nameValue = nameElement.value;
+  const nameIsValid = /^[a-zA-z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
+  return nameIsValid;
+}
+
+function emailValidator() {
+  const emailValue = email.value;
+  const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(emailValue);
+  return emailIsValid;
+}
+
+function activitiesValidator() {
+  const activitiesIsValid = totalCost > 0;
+  return activitiesIsValid;
+}
+
+function creditCardValidator() {
+  const cardValue = ccNum.value;
+  const cardIsValid = /^[0-9]{13,16}$/.test(cardValue);
+}
+
+function zipValidator() {
+  const zipValue = zip.value;
+  const zipIsValid = /^\d{5}$/.test(zipValue);
+}
+
+function cvvValidator() {
+  const cvvValue = cvv.value;
+  const cvvIsValid = /^\d{3}$/.test(cvvValue);
+}
+
 form.addEventListener('submit', (e) => {
-    const nameValue = name.value;
-    const nameIsValid = /^[a-zA-z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
-    if (nameValue !== nameIsValid) {
-        e.preventDefault();
+    if (!nameValidator()) {
+      e.preventDefault();
+      //show class for hint
     } 
-    // console.log("Name value is: ", `"${nameValue}"`);
-    // console.log(`Name validation test on "${nameValue}" evaluates to ${nameIsValid}`);
+
+    if (!emailValidator()) {
+      e.preventDefault();
+    } 
+
+    if (!activitiesValidator()) {
+      e.preventDefault();
+    }
+
+    // if (payment.value === 'credit-card') {
+    //   if (!creditCardValidator()) {
+    //     e.preventDefault();
+    //   }
+    //   if (!zipValidator()) {
+    //     e.preventDefault();
+    //   }
+    //   if (!cvvValidator()) {
+    //     e.preventDefault();
+    //   }
+    // }
 })
