@@ -17,7 +17,9 @@ const cvv = document.getElementById('cvv');
 const form = document.querySelector('form');
 let totalCost = 0;
 
+//add default focus state to name field
 nameElement.focus();
+
 // event listener to display 'Other job role' input text field if user selects 'Other' from 'Job role' dropdown menu. 
 // User can type in job role when this is displayed.
 otherJobRole.style.display = 'none';
@@ -27,6 +29,7 @@ jobRole.addEventListener('change', (e) => {
   }
 })
 
+// Disable 'Color' element until after user has chosen a design
 color.disabled = true;
 design.addEventListener('change', (e) => {
   color.disabled = false;
@@ -44,6 +47,8 @@ design.addEventListener('change', (e) => {
   }
 })
 
+// Program 'Register for Activities' section so that the total cost of selected activities is displayed on the screen.
+// Total cost will change as user clicks/unclicks activities 
 regForActivities.addEventListener('change', (e) => {
   let dataCost = parseInt(e.target.getAttribute('data-cost'));
   // console.log(dataCost);
@@ -58,6 +63,7 @@ regForActivities.addEventListener('change', (e) => {
   totalP.innerHTML = `Total: $${totalCost}`
 })
 
+// Event listener set up so when user changes payment type, all other payment sections are hidden.  
 paypal.style.display = 'none';
 bitcoin.style.display = 'none';
 payment.children[1].selected = true;
@@ -74,6 +80,7 @@ payment.addEventListener('change', (e) => {
     payment.children[3].selected = true;
     bitcoin.style.display = 'block';
     paypal.style.display = 'none';
+    creditCard.style.display = 'none';
   } else {
     paypal.style.display = 'none';
     bitcoin.style.display = 'none';
@@ -82,6 +89,7 @@ payment.addEventListener('change', (e) => {
   }
 })
 
+//helper functions for form validation event listener
 function nameValidator() {
   const nameValue = nameElement.value;
   const nameIsValid = /^[a-zA-z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
@@ -102,21 +110,22 @@ function activitiesValidator() {
 function creditCardValidator() {
   const cardValue = ccNum.value;
   const cardIsValid = /^[0-9]{13,16}$/.test(cardValue);
-  return creditCardValidator
+  return cardIsValid;
 }
 
 function zipValidator() {
   const zipValue = zip.value;
-  const zipIsValid = /^\d{5}$/.test(zipValue);
-  return zipValidator;
+  const cardIsValid = /^\d{5}$/.test(zipValue);
+  return cardIsValid;
 }
 
 function cvvValidator() {
   const cvvValue = cvv.value;
   const cvvIsValid = /^\d{3}$/.test(cvvValue);
-  return cvvValidator
+  return cvvIsValid;
 }
 
+//event listener to prevent users from submitting an incomplete form
 form.addEventListener('submit', (e) => {
     if (!nameValidator()) {
       e.preventDefault();
