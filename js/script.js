@@ -130,30 +130,72 @@ function cvvValidator() {
 form.addEventListener('submit', (e) => {
     if (!nameValidator()) {
       e.preventDefault();
-    } 
+      nameElement.parentElement.classList.add('not-valid');
+      nameElement.parentElement.classList.remove('valid');
+      nameElement.nextElementSibling.style.display = 'block';
+    } else {
+        nameElement.parentElement.classList.add('valid');
+        nameElement.parentElement.classList.remove('not-valid');
+        nameElement.nextElementSibling.style.display = 'none';
+    }
 
     if (!emailValidator()) {
       e.preventDefault();
-    } 
+      email.parentElement.classList.add('not-valid');
+      email.parentElement.classList.remove('valid');
+      email.nextElementSibling.style.display = 'block';
+    } else {
+      email.parentElement.classList.add('valid');
+      email.parentElement.classList.remove('not-valid');
+      email.nextElementSibling.style.display = 'none';
+    }
 
     if (!activitiesValidator()) {
       e.preventDefault();
+      regForActivities.classList.add('not-valid');
+      regForActivities.classList.remove('valid');
+      regForActivities.lastElementChild.style.display = 'block';
+    } else {
+      regForActivities.classList.add('valid');
+      regForActivities.classList.remove('not-valid');
+      regForActivities.lastElementChild.style.display = 'none';
     }
 
     if (payment.value === 'credit-card') {
       if (!creditCardValidator()) {
         e.preventDefault();
+        ccNum.parentElement.parentElement.classList.add('not-valid');
+        ccNum.parentElement.parentElement.classList.remove('valid');
+        ccNum.nextElementSibling.style.display = 'block';
+      } else {
+        ccNum.parentElement.parentElement.classList.add('valid');
+        ccNum.parentElement.parentElement.classList.remove('not-valid');
+        ccNum.nextElementSibling.style.display = 'none';
       }
       if (!zipValidator()) {
         e.preventDefault();
+        zip.parentElement.parentElement.classList.remove('valid');
+        zip.parentElement.parentElement.classList.remove('valid');
+        zip.nextElementSibling.style.display = 'block'
+      } else {
+        zip.parentElement.parentElement.classList.add('valid');
+        zip.parentElement.parentElement.classList.remove('not-valid');
+        zip.nextElementSibling.style.display = 'none';
       }
       if (!cvvValidator()) {
         e.preventDefault();
+        cvv.parentElement.parentElement.classList.remove('valid');
+        cvv.parentElement.parentElement.classList.remove('valid');
+        cvv.nextElementSibling.style.display = 'block'
+      } else {
+        cvv.parentElement.parentElement.classList.add('valid');
+        cvv.parentElement.parentElement.classList.remove('not-valid');
+        cvv.nextElementSibling.style.display = 'none';
       }
     }
 })
 
-// Event listeners to add additional styles to checkboxes in the 'Register for Activities' section
+// Event listeners to make the focus states of the activities more obvious to all users
 for (let i = 0; i < activitiesInput.length; i++) {
   activitiesInput[i].addEventListener('focus', (e) => {
     e.target.parentElement.classList.add('focus');
