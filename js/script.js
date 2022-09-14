@@ -15,6 +15,7 @@ const ccNum = document.getElementById('cc-num');
 const zip = document.getElementById('zip');
 const cvv = document.getElementById('cvv');
 const form = document.querySelector('form');
+const activitiesInput = document.querySelectorAll('input[type="checkbox"]')
 let totalCost = 0;
 
 //add default focus state to name field
@@ -151,3 +152,13 @@ form.addEventListener('submit', (e) => {
       }
     }
 })
+
+// Event listeners to add additional styles to checkboxes in the 'Register for Activities' section
+for (let i = 0; i < activitiesInput.length; i++) {
+  activitiesInput[i].addEventListener('focus', (e) => {
+    e.target.parentElement.classList.add('focus');
+  })
+  activitiesInput[i].addEventListener('blur', (e) => {
+    e.target.parentElement.classList.remove('focus');
+  })
+}
