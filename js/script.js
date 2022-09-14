@@ -102,22 +102,24 @@ function activitiesValidator() {
 function creditCardValidator() {
   const cardValue = ccNum.value;
   const cardIsValid = /^[0-9]{13,16}$/.test(cardValue);
+  return creditCardValidator
 }
 
 function zipValidator() {
   const zipValue = zip.value;
   const zipIsValid = /^\d{5}$/.test(zipValue);
+  return zipValidator;
 }
 
 function cvvValidator() {
   const cvvValue = cvv.value;
   const cvvIsValid = /^\d{3}$/.test(cvvValue);
+  return cvvValidator
 }
 
 form.addEventListener('submit', (e) => {
     if (!nameValidator()) {
       e.preventDefault();
-      //show class for hint
     } 
 
     if (!emailValidator()) {
@@ -128,15 +130,15 @@ form.addEventListener('submit', (e) => {
       e.preventDefault();
     }
 
-    // if (payment.value === 'credit-card') {
-    //   if (!creditCardValidator()) {
-    //     e.preventDefault();
-    //   }
-    //   if (!zipValidator()) {
-    //     e.preventDefault();
-    //   }
-    //   if (!cvvValidator()) {
-    //     e.preventDefault();
-    //   }
-    // }
+    if (payment.value === 'credit-card') {
+      if (!creditCardValidator()) {
+        e.preventDefault();
+      }
+      if (!zipValidator()) {
+        e.preventDefault();
+      }
+      if (!cvvValidator()) {
+        e.preventDefault();
+      }
+    }
 })
