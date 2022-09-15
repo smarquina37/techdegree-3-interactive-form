@@ -15,9 +15,12 @@ const ccNum = document.getElementById('cc-num');
 const zip = document.getElementById('zip');
 const cvv = document.getElementById('cvv');
 const form = document.querySelector('form');
-const activitiesInput = document.querySelectorAll('input[type="checkbox"]')
+const activitiesInput = document.querySelectorAll('input[type="checkbox"]');
+const checkboxes = document.querySelectorAll('.activities input');
 let totalCost = 0;
 
+console.log(regForActivities);
+console.log(checkboxes);
 //add default focus state to name field
 nameElement.focus();
 
@@ -63,6 +66,26 @@ regForActivities.addEventListener('change', (e) => {
   // console.log(totalCost);
   // console.log(e.target.checked);
   totalP.innerHTML = `Total: $${totalCost}`
+})
+
+//Event listener to prevent users from clicking on time-conflicting events in the 'Register for Activities' section
+regForActivities.addEventListener('change', (e) => {
+  const clicked = e.target;
+  const clickedType = e.target.getAttribute('data-day-and-time');
+  for (let i = 0; i < checkboxes.length; i ++) {
+    // Variable to store the `data-type` attribute of the `checkboxes[i]` in the loop's current iteration
+    const checkboxType = checkboxes[i].getAttribute('data-day-and-time');
+    // If statement to check which items to disable/enable
+    // Check if the checkboxType and the clickedType variables equal 
+    // && check that the clicked checkbox is not the checkbox in the loop's current iteration
+    if (clickedType === checkboxType && clicked !== checkboxes[i]) {
+      if (clicked.checked) {
+        checkboxes[i].disabled = true;
+      } else {
+        checkboxes[i].disabled = false;
+      }
+    }
+  }
 })
 
 // Event listener set up so when user changes the payment type, all other payment sections are hidden.  
