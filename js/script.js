@@ -30,7 +30,8 @@ jobRole.addEventListener('change', (e) => {
   }
 })
 
-// Disable 'Color' element until after user has chosen a design
+// Event listener to disable 'Color' element until after user has chosen a design
+// Only colors tagged with a specific design will appear in the dropdown menu
 color.disabled = true;
 design.addEventListener('change', (e) => {
   color.disabled = false;
@@ -64,7 +65,7 @@ regForActivities.addEventListener('change', (e) => {
   totalP.innerHTML = `Total: $${totalCost}`
 })
 
-// Event listener set up so when user changes payment type, all other payment sections are hidden.  
+// Event listener set up so when user changes the payment type, all other payment sections are hidden.  
 paypal.style.display = 'none';
 bitcoin.style.display = 'none';
 payment.children[1].selected = true;
@@ -90,7 +91,8 @@ payment.addEventListener('change', (e) => {
   }
 })
 
-//helper functions for form validation event listener
+//helper functions for the form validation event listener below
+//functions are testing that individual sections follow requirements for submitting
 function nameValidator() {
   const nameValue = nameElement.value;
   const nameIsValid = /^[a-zA-z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
@@ -126,7 +128,8 @@ function cvvValidator() {
   return cvvIsValid;
 }
 
-//event listener to prevent users from submitting an incomplete form
+//event listener to prevent users from submitting an incomplete form and alerting them of the error
+
 form.addEventListener('submit', (e) => {
     if (!nameValidator()) {
       e.preventDefault();
@@ -195,7 +198,7 @@ form.addEventListener('submit', (e) => {
     }
 })
 
-// Event listeners to make the focus states of the activities more obvious to all users
+// Event listeners to make the focus state of the activities more obvious to all users
 for (let i = 0; i < activitiesInput.length; i++) {
   activitiesInput[i].addEventListener('focus', (e) => {
     e.target.parentElement.classList.add('focus');
