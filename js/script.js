@@ -231,6 +231,12 @@ for (let i = 0; i < activitiesInput.length; i++) {
   })
 }
 
+// nameElement.addEventListener('keyup', validate);
+
+// function validate(event) {
+  
+// }
+
 //Validation Functions
 // function validationPass(element) {
 //   element.parentElement.classList.add('valid');
