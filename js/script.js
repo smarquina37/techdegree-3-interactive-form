@@ -116,7 +116,7 @@ payment.addEventListener('change', (e) => {
 })
 
 //helper functions for the form validation event listener below
-//functions are testing that individual sections follow requirements for submitting
+// functions are testing that individual sections follow requirements for submitting
 function nameValidator() {
   const nameValue = nameElement.value;
   const nameIsValid = /^[a-zA-z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
@@ -151,23 +151,6 @@ function cvvValidator() {
   const cvvIsValid = /^\d{3}$/.test(cvvValue);
   return cvvIsValid;
 }
-
-// /* OPTIONAL: Add real-time validation */
-// // To add real time validation, use the .addEventListener() method on the form elements/sections
-// // Use events like `keyup` and `change`
-// // As the callback, use the validation functions above, but remember, 
-// // Don't use parens when passing a reference to a function as a callback
-// // Something like: `nameElement.addEventListener('keyup', nameValidator);`
-
-// // nameElement.addEventListener('keyup', nameValidator) {
-  
-// // }
-
-// // nameElement.addEventListener('keyup', nameValidation);
-
-// // function nameValidation(e) {
-// //   return nameValidator();
-// // }
 
 //event listener to prevent users from submitting an incomplete form and alerting them of the error
 form.addEventListener('submit', (e) => {
