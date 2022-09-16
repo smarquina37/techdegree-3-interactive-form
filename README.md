@@ -1,3 +1,2 @@
 # techdegree-3-interactive-form
-
-Create a README.md file for your repo. Include details that explain what the project is, what technologies you used to build it, your development process, and anything else your user or fellow developers might need to know to use or run the project.
+This is a registration form used with HTML, CSS, and JavaScript. I worked with JavaScript to add focus and blur elements to fields, display/hide certain fields, add validation forms so users are inputting their informaton correctly, and displaying error messages when users are trying to submit incorrect form inputs.
