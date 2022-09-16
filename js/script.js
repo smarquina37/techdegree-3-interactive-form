@@ -19,8 +19,6 @@ const activitiesInput = document.querySelectorAll('input[type="checkbox"]');
 const checkboxes = document.querySelectorAll('.activities input');
 let totalCost = 0;
 
-console.log(regForActivities);
-console.log(checkboxes);
 //add default focus state to name field
 nameElement.focus();
 
@@ -30,6 +28,8 @@ otherJobRole.style.display = 'none';
 jobRole.addEventListener('change', (e) => {
   if (e.target.value === 'other' ) {
     otherJobRole.style.display = 'block';
+  } else {
+    otherJobRole.style.display = 'none';
   }
 })
 
@@ -100,6 +100,7 @@ payment.addEventListener('change', (e) => {
     payment.children[2].selected = true;
     paypal.style.display = 'block';
     creditCard.style.display = 'none';
+    bitcoin.style.display = 'none';
   } else if (e.target.value === 'bitcoin') {
     payment.children[2].selected = false;
     payment.children[3].selected = true;
@@ -151,8 +152,24 @@ function cvvValidator() {
   return cvvIsValid;
 }
 
-//event listener to prevent users from submitting an incomplete form and alerting them of the error
+// /* OPTIONAL: Add real-time validation */
+// // To add real time validation, use the .addEventListener() method on the form elements/sections
+// // Use events like `keyup` and `change`
+// // As the callback, use the validation functions above, but remember, 
+// // Don't use parens when passing a reference to a function as a callback
+// // Something like: `nameElement.addEventListener('keyup', nameValidator);`
 
+// // nameElement.addEventListener('keyup', nameValidator) {
+  
+// // }
+
+// // nameElement.addEventListener('keyup', nameValidation);
+
+// // function nameValidation(e) {
+// //   return nameValidator();
+// // }
+
+//event listener to prevent users from submitting an incomplete form and alerting them of the error
 form.addEventListener('submit', (e) => {
     if (!nameValidator()) {
       e.preventDefault();
@@ -230,3 +247,124 @@ for (let i = 0; i < activitiesInput.length; i++) {
     e.target.parentElement.classList.remove('focus');
   })
 }
+
+//Validation Functions
+// function validationPass(element) {
+//   element.parentElement.classList.add('valid');
+//   element.parentElement.classList.remove('not-valid');
+//   element.parentElement.lastElementChild.style.display = 'none';
+// }
+
+// function validationFail(element) {
+//   element.parentElement.classList.add('not-valid');
+//   element.parentElement.classList.remove('valid');
+//   element.parentElement.lastElementChild.style.display = 'block';
+// }
+
+// const nameValidator = () => {
+//   const nameIsValid = /^[a-zA-z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
+//   if (nameIsValid) {
+//     validationPass(nameElement);
+//   } else {
+//     validationFail(nameElement);
+//   }
+//   return nameIsValid;
+// }
+
+// const emailValidator = () => {
+//   const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(emailValue);
+//   if (emailIsValid) {
+//     validationPass(email);
+//   } else {
+//     validationFail(email);
+//   }
+//   return emailIsValid;
+// }
+
+// const activitiesValidator = () => {
+//   const activitiesIsValid = totalCost > 0;
+//   if (activitiesIsValid) {
+//     validationPass(activitiesInput);
+//   } else {
+//     validationFail(activitiesInput);
+//   }
+//   return activitiesIsValid;
+// }
+
+// const cardValidator = () => {
+//   const cardIsValid = totalCost > 0;
+//   if (cardIsValid) {
+//     validationPass(ccNum);
+//   } else {
+//     validationFail(ccNum);
+//   }
+//   return activitiesIsValid;
+// }
+
+// const zipValidator = () => {
+//   const zipIsValid = /^\d{5}$/.test(zipValue);
+//   if (zipIsValid) {
+//     validationPass(zip);
+//   } else {
+//     validationFail(zip);
+//   }
+//   return zipIsValid;
+// }
+
+// const cvvValidator = () => {
+//   const cvvIsValid = /^\d{3}$/.test(cvvValue);
+//   if (cvvIsValid) {
+//     validationPass(cvv);
+//   } else {
+//     validationFail(cvv);
+//   }
+//   return cvvIsValid;
+// }
+
+// form.addEventListener('submit', (e) => {
+//   if (nameValidator(nameIsValid)) {
+//     validationPass();
+//   } else {
+//     validationFail();
+//     e.preventDefault();
+//   }
+
+  // }
+
+//     if (emailValidator()) {
+//        validationPass();
+//     } else {
+//       validationFail();
+//       e.preventDefault();
+//     }
+
+//     if (activitiesValidator()) {
+//       validationPass();
+//     } else {
+//       validationFail();
+//       e.preventDefault();
+//     }
+
+//     if (payment.value === 'credit-card') {
+//       if (creditCardValidator()) {
+//         validationPass();
+//     } else {
+//       validationFail();
+//       e.preventDefault();
+//     }
+
+//       if (zipValidator()) {
+//        validationPass();
+//     } else {
+//       validationFail();
+//       e.preventDefault();
+//     }
+
+//       if (cvvValidator()) {
+//         validationPass();
+//     } else {
+//       validationFail();
+//       e.preventDefault();
+//     }
+//     }
+// })
