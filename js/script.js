@@ -63,8 +63,6 @@ regForActivities.addEventListener('change', (e) => {
   } else {
     totalCost -= dataCost
   }
-  // console.log(totalCost);
-  // console.log(e.target.checked);
   totalP.innerHTML = `Total: $${totalCost}`
 })
 
